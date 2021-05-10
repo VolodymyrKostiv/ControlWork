@@ -10,3 +10,5 @@
         <p><%= truncate article.body, length: 50 %></p>
     </div>
 <% end %>
+<%= will_paginate articles, renderer: BootstrapPagination::Rails, previous_label: "Previous", next_label: "Next" %>
+ 
