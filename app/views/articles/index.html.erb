@@ -1,11 +1,28 @@
-<h1>Articles</h1>
-
-<ul>
-  <% @articles.each do |article| %>
-    <li>
-      <%= link_to article.title, article %>
-    </li>
+<div class="row pt-3 pb-3">
+  <div class="col-3">
+    <%= render "search" %>
+  </div>
+<div class="col-6">
+<div>
+  <div class="h5">Timeline</div>
+    <%= link_to "New Article", new_article_path, class: "btn btn-primary" %>
+  </div>
+  <% if @articles.size > 0 %>
+    <%= render partial: "articles/list", locals: { articles: @articles } %>
+  <% else %>
+    <div class="col-sm-8">
+      <div class="alert alert-warning" role="alert">
+        No articles at the moment!
+      </div>
+    </div>
   <% end %>
-</ul>
-
-<%= link_to "New Article", new_article_path %>
+</div>
+<div class="col-3">
+  <div class="h5 mb-3">Right</div>
+    <div class="card" style="width: auto">
+      <ul class="list-group list-group-flush">
+        Right
+      </ul>
+    </div>
+  </div>
+</div>

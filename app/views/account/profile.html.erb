@@ -1,0 +1,12 @@
+    <div class="row pt-4">
+        <div class="col-sm-4">
+            <div class="card border-primary mb-2" style="width: auto">
+                <div class="card-header text-primary">Username - <%= @profile.username %></div>
+                <div class="card-header text-primary">E-mail - <%= @profile.email %></div>
+                <div class="card-header text-primary">Registration date - <%= @profile.created_at %></div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <%= render partial: "articles/list", locals: { articles: @articles } %>
+        </div>
+    </div>

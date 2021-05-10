@@ -1,16 +1,29 @@
-<h1><%= @article.title %></h1>
+<div class="container">
+  <p class="fs-2 fw-bold"><%= @article.title %></p>
+  <p class="lh-sm"><%= @article.body %></p>
+  <div class="row">
+    <div class="col-3">
+      <% if current_user.id == @article.user_id %>
+        <div class="list-group">
+          <div class="list-group-item"><%= link_to "Edit", edit_article_path(@article), class: "text-decoration-none" %></div>
+          <div class="list-group-item"><%= link_to "Destroy", article_path(@article), class: "text-decoration-none",
+                          method: :delete,
+                          data: { confirm: "Are you sure?" } %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <p class="fs-4">Comments: </p>
+  <% @article.comments.each do |article| %>
+      <div class="card pt-2 pb-2 pl-3 pr-3 mt-3">
+          <p>
+              <small>
+                  By 
+              </small>
+          </p>  
+      </div>
+  <% end %>
 
-<p><%= @article.body %></p>
-
-<ul>
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Destroy", article_path(@article),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %></li>
-</ul>
-
-<h2>Comments</h2>
-<%= render @article.comments %>
-
-<h2>Add a comment:</h2>
-<%= render 'comments/form' %>
+  <p class="fs-4">Add comment: </p>
+  <%= render 'comments/form' %>
+</div>
