@@ -1,28 +1,32 @@
 <div class="row pt-3 pb-3">
-  <div class="col-3">
+  <div class="col-3 mt-2">
     <%= render "search" %>
   </div>
-<div class="col-6">
-<div>
-  <div class="h5">Timeline</div>
-    <%= link_to "New Article", new_article_path, class: "btn btn-primary" %>
+
+  <div class="col-6">
+    <div>
+      <div class="h5">Timeline <%= link_to "New Article", new_article_path, class: "btn btn-primary" %></div>
+    </div>
+    
+    <% if @articles.size > 0 %>
+      <%= render partial: "articles/list", locals: { articles: @articles } %>
+    <% else %>
+      <div class="col-sm-8">
+        <div class="alert alert-warning" role="alert">
+          No articles at the moment!
+        </div>
+      </div>
+    <% end %>
   </div>
-  <% if @articles.size > 0 %>
-    <%= render partial: "articles/list", locals: { articles: @articles } %>
-  <% else %>
-    <div class="col-sm-8">
-      <div class="alert alert-warning" role="alert">
-        No articles at the moment!
+
+  <div class="col-3">
+    <div class="h5 mb-3">Right</div>
+      <div class="card" style="width: auto">
+        <ul class="list-group list-group-flush">
+          Right
+        </ul>
       </div>
     </div>
-  <% end %>
-</div>
-<div class="col-3">
-  <div class="h5 mb-3">Right</div>
-    <div class="card" style="width: auto">
-      <ul class="list-group list-group-flush">
-        Right
-      </ul>
-    </div>
   </div>
+
 </div>

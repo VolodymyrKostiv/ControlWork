@@ -1,5 +1,10 @@
 <div class="container">
   <p class="fs-2 fw-bold"><%= @article.title %></p>
+  <% if @article.image.attached? %>
+    <div class="card">
+      <%= image_tag @article.image %>
+    </div>
+  <% end %>
   <p class="lh-sm"><%= @article.body %></p>
   <div class="row">
     <div class="col-3">
