@@ -38,6 +38,10 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def search
+    @articles = Article.where("title LIKE ?", "%" + params[:q] + "%")
+  end
+
   def destroy
     @article = Article.find(params[:id])
     @article.destroy

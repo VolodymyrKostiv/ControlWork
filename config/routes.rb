@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  get "u/:username" => "account#profile", as: :profile
+
   root "articles#index"
+
+  get 'search', to: "articles#search"
+  get "u/:username" => "account#profile", as: :profile
+  
   resources :articles do
     resources :comments
   end
