@@ -1,23 +1,31 @@
-    <div class="row pt-4">
-        <div class="col-sm-4">
-            <div class="card border-primary mb-2" style="width: auto">
-                <div class="card-header text-primary">Username - <%= @profile.username %></div>
-                <div class="card-header text-primary">E-mail - <%= @profile.email %></div>
-                <div class="card-header text-primary">Registration date - <%= @profile.created_at %></div>
-            </div>
-        </div>
-        <div class="col-sm-8">
-        <% @articles.each do |article| %>
-            <div class="card p-2 mt-3">
-                <p>
-                    <small>
-                        By <%= link_to article.user.username, profile_path(article.user.username), class: "text-decoration-none" %> 
-                        <%= time_ago_in_words article.created_at %> ago
-                    </small>
-                </p>  
-                <div class="h4"><%= link_to article.title, article_path(article), class: "text-decoration-none" %></div>
-                <p><%= truncate article.body, length: 50 %></p>
-            </div>
-        <% end %>
+<div class="row pt-4">
+    <div class="col-sm-4">
+        <div class="card border-primary mb-2" style="width: auto">
+            <div class="card-header text-primary">Username - <%= @profile.username %></div>
+            <div class="card-header text-primary">E-mail - <%= @profile.email %></div>
+            <div class="card-header text-primary">Registration date - <%= @profile.created_at %></div>
         </div>
     </div>
+    <div class="col-sm-8">
+        <% if @articles.size > 0%>
+            <% @articles.each do |article| %>
+                <div class="card p-2 mt-3">
+                    <p>
+                        <small>
+                            By <%= link_to article.user.username, profile_path(article.user.username), class: "text-decoration-none" %> 
+                            <%= time_ago_in_words article.created_at %> ago
+                        </small>
+                    </p>  
+                    <div class="h4"><%= link_to article.title, article_path(article), class: "text-decoration-none" %></div>
+                    <p><%= truncate article.body, length: 50 %></p>
+                </div>
+            <% end %>
+        <% else %>
+            <div class="col-sm-12">
+                <div class="alert alert-warning text-center" role="alert">
+                    No articles at the moment!
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

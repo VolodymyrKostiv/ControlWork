@@ -1,15 +1,16 @@
 <div class="container">
-  <p class="fs-2 fw-bold"><%= @article.title %></p>
+  <p class="fs-1 fw-bold text-center mt-2"><%= @article.title %></p>
   <% if @article.image.attached? %>
     <div class="card">
       <%= image_tag @article.image %>
     </div>
   <% end %>
-  <p class="lh-sm"><%= @article.body %></p>
+
+  <p class="lh-sm mt-4"><%= @article.body %></p>
   <div class="row">
     <div class="col-3">
       <% if current_user.id == @article.user_id %>
-        <div class="list-group">
+        <div class="list-group mt-3">
           <div class="list-group-item"><%= link_to "Edit", edit_article_path(@article), class: "text-decoration-none" %></div>
           <div class="list-group-item"><%= link_to "Destroy", article_path(@article), class: "text-decoration-none",
                           method: :delete,
@@ -18,7 +19,7 @@
       <% end %>
     </div>
   </div>
-  <p class="fs-4">Comments: </p>
+  <p class="fs-4 mt-4">Comments: </p>
   <% @article.comments.each do |article| %>
       <div class="card pt-2 pb-2 pl-3 pr-3 mt-3">
           <p>

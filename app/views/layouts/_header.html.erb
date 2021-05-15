@@ -7,18 +7,16 @@
                         <%= link_to "MyBlog", root_path, class: "text-decoration-none" %>
                     </div>
                 </div>
+                <% if user_signed_in? %>
+                    <div class="btn-group" role="group" aria-label="User">
+                        <button type="button" class="btn btn-outline-primary"><%= link_to "Profile",  profile_path(current_user.username), class: "dropdown-item" %></button>
+                        <button type="button" class="btn btn-outline-primary"><%= link_to "Settings", edit_user_registration_path, class: "dropdown-item"%></button>
+                        <button type="button" class="btn btn-outline-primary"><%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></button>
+                    </div>
+                <% end %>
                 <div class="float-right">
                     <% if user_signed_in? %>
-                    <div class="dropdown show">
-                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                           <%= current_user.username%> 
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <%= link_to "Profile",  profile_path(current_user.username), class: "dropdown-item" %>
-                            <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item"%>
-                            <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-                        </div>
-                    </div>
+                        <div class="h5"><%= current_user.username%></h3>
                     <% else %>
                         <%= link_to "Log in", new_user_session_path, class: "btn btn-outline-primary mr-2" %>
                         <%= link_to "Create account", new_user_registration_path, class: "btn btn-primary" %>

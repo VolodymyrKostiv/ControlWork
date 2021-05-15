@@ -4,7 +4,7 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="row">
-      <div class="col-md-8 pb-2 pt-3">
+      <div class="col-md-8 pb-2 pt-2">
         <div class="form-group">
           <%= f.label :email %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
@@ -45,8 +45,8 @@
       </div>
     </div>
 
-    <div class="actions pb-3">
-      <%= f.submit "Sign up", class: "btn btn-success mr-3" %>
+    <div class="actions pb-3 mt-2">
+      <%= f.submit "Sign up", class: "btn btn-success" %>
       <%= link_to "Cancel", root_path, class: "btn btn-outline-danger"%>
       <%= render "devise/shared/links" %>
     </div>
