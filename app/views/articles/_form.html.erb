@@ -12,9 +12,9 @@
         </ul>
       </div>
 
-      <div class="form-group mt-3">
+      <div class="form-group mt-3 mb-3">
         <%= form.label :body %>
-        <%= form.text_area :body, class: "form-control", rows: "5", width: "auto"%><br>
+        <%= form.text_area :body, class: "form-control", rows: "5", width: "auto"%>
         
         <ul class="list-group">
           <% article.errors.full_messages_for(:body).each do |message| %>

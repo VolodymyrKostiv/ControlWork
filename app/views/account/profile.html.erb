@@ -9,7 +9,7 @@
     <div class="col-sm-8">
         <% if @articles.size > 0%>
             <% @articles.each do |article| %>
-                <div class="card p-2 mt-3">
+                <div class="card p-2 mb-3">
                     <p>
                         <small>
                             By <%= link_to article.user.username, profile_path(article.user.username), class: "text-decoration-none" %> 
