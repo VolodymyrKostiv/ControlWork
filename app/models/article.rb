@@ -1,5 +1,5 @@
 class Article < ApplicationRecord
-    self.per_page = 10
+    self.per_page = 5
 
     has_one_attached :image
     
