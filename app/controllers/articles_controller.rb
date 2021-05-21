@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, except: [ :index ]
+  load_and_authorize_resource
 
   def index
     @articles = Article.paginate(page: params[:page]).order(created_at: :desc)

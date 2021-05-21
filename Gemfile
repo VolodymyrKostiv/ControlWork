@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 
 # Added by me
 gem 'devise'
+gem 'cancancan'
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap', '~> 1.0.2'
 

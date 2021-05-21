@@ -1,5 +1,6 @@
 <div class="container">
   <p class="fs-1 fw-bold text-center mt-2"><%= @article.title %></p>
+  <p class="fs-6 text-center mt-2">By <%= User.find(@article.user_id).username %></p>
   <% if @article.image.attached? %>
     <div class="card">
       <%= image_tag @article.image %>
@@ -10,19 +11,29 @@
   
   <% if @article.comments.size > 0 %>
     <p class="fs-4 mt-4">Comments: </p>
-    <% @article.comments.order(created_at: :desc).each do |article| %>
+    <% @article.comments.order(created_at: :desc).each do |comment| %>
       <div class="row">
         <div class="col-6">
         <div class="card p-1 mt-1">
           <div class="card-header">
             <small>
-              By <%= link_to article.user.username, profile_path(article.user.username), class: "text-decoration-none" %> 
-              <%= time_ago_in_words article.created_at %> ago
+              By <%= link_to comment.user.username, profile_path(comment.user.username), class: "text-decoration-none" %> 
+              <%= time_ago_in_words comment.created_at %> ago
             </small>
           </div>
           <div class="card-body">
-            <%= article.body %>
+            <%= comment.body %>
           </div>
+           <% if can? :update, comment %>
+            <div class="card-text">
+              <small>
+              <small>
+              <%= link_to "Destroy Comment", [comment.article, comment], method: :delete,
+                  data: { confirm: "Are you sure?" }, class: "text-decoration-none"  %>
+              </small>
+              </small>
+            </div>
+          <% end %>
         </div>
         </div>
       </div>
@@ -40,7 +51,7 @@
 
   <div class="row mb-3">
     <div class="col-3">
-      <% if current_user.id == @article.user_id %>
+      <% if can? :update, @article %>
         <div class="list-group mt-3">
           <div class="list-group-item"><%= link_to "Edit", edit_article_path(@article), class: "text-decoration-none" %> </div>
           <div class="list-group-item"><%= link_to "Destroy", article_path(@article), class: "text-decoration-none",
