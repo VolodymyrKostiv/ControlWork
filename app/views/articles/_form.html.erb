@@ -23,6 +23,18 @@
         </ul>
       </div>
 
+      <div class="form-group mt-3 mb-3">
+        <%= form.label :category_id %>
+        <%= form.collection_select :category_id, Category.order(:name), :id, :name, { :prompt => "None" }, class: "form-control" %>
+
+        <ul class="list-group">
+          <% article.errors.full_messages_for(:category_id).each do |message| %>
+            <li class="list-group-item list-group-item-warning"><%= message %></li>
+          <% end %>
+        </ul>
+
+      </div>
+
       <div class="form-group">
         <% if article.image.attached? %>
           <%= image_tag article.image, style: "width: 300px; display: block" %>

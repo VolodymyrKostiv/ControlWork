@@ -7,7 +7,7 @@ class AccountController < ApplicationController
 
     def profile
         @profile = User.find_by_username params[:username]
-        @articles = @profile.articles
+        @articles = @profile.articles.order(id: :desc)
     end
     
 end

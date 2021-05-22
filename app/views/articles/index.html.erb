@@ -4,7 +4,7 @@
     <%= render partial: "articles/find" %>
   </div>
 
-  <div class="col-9">
+  <div class="col-6">
     <div class="h5">Timeline <%= link_to "New Article", new_article_path, class: "btn btn-primary" %></div>
     <% if @articles.size > 0 %>
       <%= render partial: "articles/list", locals: { articles: @articles } %>
@@ -15,6 +15,10 @@
         </div>
       </div>
     <% end %>
+  </div>
+
+  <div class="col-3 mt-2">
+    <%= render partial: "articles/categories" %>
   </div>
 
 </div>

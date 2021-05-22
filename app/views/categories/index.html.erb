@@ -1,0 +1,18 @@
+<div class="row pt-3 pb-3">
+  <div class="col-12">
+    <div class="h3">Categories
+    <% if can? :create, @categories %>
+        <%= link_to "New Category", new_category_path, class: "btn btn-primary" %>
+    <% end %>
+    </div>
+    <% if @categories.size > 0 %>
+      <%= render partial: "categories/list", locals: { categories: @categories } %>
+    <% else %>
+      <div class="col-sm-12">
+        <div class="alert alert-warning text-center h5" role="alert">
+          No categories at the moment!
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

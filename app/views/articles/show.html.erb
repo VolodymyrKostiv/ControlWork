@@ -1,6 +1,12 @@
 <div class="container">
   <p class="fs-1 fw-bold text-center mt-2"><%= @article.title %></p>
-  <p class="fs-6 text-center mt-2">By <%= User.find(@article.user_id).username %></p>
+  <p class="fs-6 text-center mt-2">
+    By <%= link_to @article.user.username, profile_path(@article.user.username), class: "text-decoration-none" %>
+    <% if @article.category_id != nil %>
+      in <%= link_to Category.find(@article.category_id).name, category_path(@article.category_id), class: "text-decoration-none" %>
+    <% end %>
+    <%= time_ago_in_words @article.created_at %> ago
+  </p>
   <% if @article.image.attached? %>
     <div class="card">
       <%= image_tag @article.image %>
@@ -28,7 +34,7 @@
             <div class="card-text">
               <small>
               <small>
-              <%= link_to "Destroy Comment", [comment.article, comment], method: :delete,
+              <%= link_to "Delete comment", [comment.article, comment], method: :delete,
                   data: { confirm: "Are you sure?" }, class: "text-decoration-none"  %>
               </small>
               </small>
